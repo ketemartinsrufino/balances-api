@@ -1,0 +1,46 @@
+{
+  "transactions": [
+    {
+      "type": "WITHDRAW",
+      "value": -10,
+      "updatedAt": 1533270651427,
+      "id": 1
+    },
+    {
+      "type": "DEPOSIT",
+      "value": 50,
+      "updatedAt": 1533270663879,
+      "id": 2
+    },
+    {
+      "type": "DEPOSIT",
+      "value": 50,
+      "updatedAt": 1533271073216,
+      "id": 3
+    },
+    {
+      "type": "WITHDRAW",
+      "value": -50,
+      "updatedAt": 1533271089708,
+      "id": 4
+    },
+    {
+      "type": "WITHDRAW",
+      "value": -50,
+      "updatedAt": 1533271355696,
+      "id": 5
+    },
+    {
+      "type": "DEPOSIT",
+      "value": 10,
+      "updatedAt": 1533272951420,
+      "id": 6
+    },
+    {
+      "type": "WITHDRAW",
+      "value": -10,
+      "updatedAt": 1533273008021,
+      "id": 7
+    }
+  ]
+}
