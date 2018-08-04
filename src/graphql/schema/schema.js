@@ -20,8 +20,8 @@ const TransationTypeEnum = new GraphQLEnumType({
         "DEPOSIT": {
             value: 'DEPOSIT',
         },
-        "WITHDRAW": {
-            value: 'WITHDRAW'
+        "WITHDRAWAL": {
+            value: 'WITHDRAWAL'
         }
     }
 });

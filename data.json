@@ -1,7 +1,7 @@
 {
   "transactions": [
     {
-      "type": "WITHDRAW",
+      "type": "WITHDRAWAL",
       "value": -10,
       "updatedAt": 1533270651427,
       "id": 1
