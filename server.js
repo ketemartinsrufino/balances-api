@@ -18,19 +18,10 @@ server.get('/balance', (req, res) => {
 
 server.use(jsonServer.bodyParser);
 server.use((req, res, next) => {
-    const types = transactionController.TransationTypes;
-    const {value, type} = req.body;
-    
-    console.log({value, type, onlist: types.indexOf(type) == -1});
-
-    if(!value || types.indexOf(type) === -1) {
-        res.status(412).jsonp({
-            error: `Value is mandatory and type must be in ${JSON.stringify(types)}`
-          })
-    } else if(req.url === '/transactions' && req.method === 'POST') {
+    if(req.url === '/transactions' && req.method === 'POST') {
         req.body = transactionController.mountTransaction(req.body);
-        next();
     }
+    next();
 })
 
 server.use('/graphql', expressGraphQL({
@@ -42,12 +33,3 @@ server.use(router);
 server.listen(3000, () => {
     console.log('JSON Server is running on port 3000')
 })
-
-// app.use('/graphql', expressGraphQL({
-//     schema, 
-//     graphiql: true
-// }));
-
-// app.listen(4000, () => {
-//     console.log('Listening on port 4000');
-// })
