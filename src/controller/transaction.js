@@ -1,6 +1,8 @@
 const data = require('./../../data.json')
 const transactions = data.transactions;
 
+const TransationTypes = ['DEPOSIT', 'WITHDRAW'];
+
 const getBalance = () => {
     return {
         value: transactions.reduce((acc, t) => {
@@ -16,13 +18,11 @@ const mountTransaction = ({type, value}) => {
         value,
         updatedAt: Date.now()
     };
-    if(type === 'WITHDRAW') {
-        transaction.value = -transaction.value;
-    }
     return transaction;
 }
 
 module.exports = {
     mountTransaction,
-    getBalance
+    getBalance,
+    TransationTypes
 }

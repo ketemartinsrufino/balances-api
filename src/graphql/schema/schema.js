@@ -6,12 +6,12 @@ const {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
+    GraphQLFloat,
     GraphQLSchema,
     GraphQLList,
     GraphQLNull,
     GraphQLNonNull,
     GraphQLEnumType
-    // GraphQLFloat,
 } = graphql;
 
 const TransationTypeEnum = new GraphQLEnumType({
@@ -31,7 +31,7 @@ const TransactionType = new GraphQLObjectType({
     fields: () => ({
         id: {type: GraphQLString},
         type: {type: TransationTypeEnum},
-        value: {type: GraphQLInt},
+        value: {type: GraphQLFloat},
         updatedAt: {type: GraphQLString},
     })
 });
@@ -48,9 +48,16 @@ const query = new GraphQLObjectType({
     fields: {
         transactions: {
             type: GraphQLList(TransactionType),
-            args: {type: {type: TransationTypeEnum}},
-            resolve(parentValue, {type}) {
-                const url = "http://localhost:3000/transactions" + (type ? `?type=${type}` : "");
+            args: {
+                type: {type: TransationTypeEnum},
+                fromDate: {type: GraphQLInt},
+                toDate: {type: GraphQLInt},
+            },
+            resolve(parentValue, {type, fromDate, toDate, description}) {
+                const url = "http://localhost:3000/transactions?" +
+                         (type ? `type=${type}` : "") +
+                         (description? `description=${description}` : "")
+                         ;
                 return axios.get(url).then(res => res.data);
             }
         },
@@ -71,7 +78,7 @@ const mutation = new GraphQLObjectType({
         deposit: {
             type: TransactionType,
             args: {
-                value: {type: new GraphQLNonNull(GraphQLInt)},
+                value: {type: new GraphQLNonNull(GraphQLFloat)},
             },
             resolve(parentValue, {value}) {
                 return axios.post('http://localhost:3000/transactions', {type: 'DEPOSIT', value})
@@ -81,7 +88,7 @@ const mutation = new GraphQLObjectType({
         withdraw: {
             type: TransactionType,
             args: {
-                value: {type: new GraphQLNonNull(GraphQLInt)},
+                value: {type: new GraphQLNonNull(GraphQLFloat)},
             },
             resolve(parentValue, {value}) {
                 return axios.post('http://localhost:3000/transactions', {type: 'WITHDRAW', value})
