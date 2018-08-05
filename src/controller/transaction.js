@@ -1,7 +1,7 @@
 const data = require('./../../data.json')
 const transactions = data.transactions;
 
-const TransationTypes = ['DEPOSIT', 'WITHDRAW'];
+const TransationTypes = ['DEPOSIT', 'WITHDRAWAL'];
 
 const getBalance = () => {
     return {

@@ -23,7 +23,7 @@
 ```
 [
   {
-    "type": "WITHDRAW",
+    "type": "WITHDRAWAL",
     "value": -10,
     "updatedAt": 1533270651427,
     "id": 1
@@ -61,7 +61,7 @@
 }
 ```
 
-### Creates a withdraw
+### Creates a WITHDRAWAL
 
 - Method: `POST`
 - Endpoint: `/transactions`
@@ -69,7 +69,7 @@
 
 ```
 {
-  "type": "WITHDRAW",
+  "type": "WITHDRAWAL",
   "value": -30
 }
 ```
@@ -78,7 +78,7 @@
 
 ```
 {
-  "type": "WITHDRAW",
+  "type": "WITHDRAWAL",
   "value": -30,
   "updatedAt": 1533270663879,
   "id": 3
@@ -124,11 +124,11 @@ mutation {
 }
 ```
 
-### Creates a withdraw
+### Creates a WITHDRAWAL
 
 ```
 mutation {
-  withdraw (value: 10) {
+  WITHDRAWAL (value: 10) {
     id
     type
     value
